@@ -33,7 +33,11 @@ if __name__ == "__main__":
     cleaned_posts_path = os.path.join("data", "cleaned_posts.json")
     posts = load_json(posts_path)
 
-    classification_text = [(post["responsibilities_text"] if post["responsibilities_text"] else "") + " " + (post["qualifications_text"] if post["qualifications_text"] else "") for post in posts]
+    classification_text = [(post["responsibilities_text"] if post["responsibilities_text"] else "") + " " +
+                           (post["qualifications_text"] if post["qualifications_text"] else "") + " " +
+                           (post["title"] if post["title"] else "") + " " +
+                           (post["benefits_text"] if post["benefits_text"] else "") + " " +
+                           (post["salary_text"] if post["salary_text"] else "") for post in posts]
     classification_category = [post["category"] for post in posts]
 
     classification_text = [clean_punctuation(c_text) for c_text in classification_text]
